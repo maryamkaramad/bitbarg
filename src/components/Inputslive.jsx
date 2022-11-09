@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Grid, Button, TextField } from "@mui/material";
-import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
+import { Grid, Button, TextField, ToggleButton } from "@mui/material";
+
 import InputSearch from "./InputSearch";
 
 const Inputslive = ({
@@ -9,13 +9,20 @@ const Inputslive = ({
   infoCurrencys,
   setUnit,
 }) => {
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState("ترتیب بر اساس");
+  const [selected, setSelected] = useState(false);
+
   const handleChange = (event) => {
     setSelect(event.target.value);
+
+    if (event.target.value === "بیشترین قیمت") {
+      handlesortmore();
+    }
+    if (event.target.value === "کمترین قیمت") {
+      handlesorlow();
+    }
   };
-  const handlesortmore = (infoCurrencys) => {
-    console.log(infoCurrencys);
-  };
+  const handlesortmore = (infoCurrencys) => {};
 
   const handlesorlow = (infoCurrencys) => {};
   const handleTeter = () => {
@@ -34,8 +41,15 @@ const Inputslive = ({
     setUnit("تومان");
   };
   const handlestateFavoreie = (infoCurrencys) => {
-    setInfoCurrencys(infoCurrencys.filter((item) => item.favorite === true));
+    if (selected === true) {
+      setInfoCurrencys(infoCurrencys);
+      setSelected(!selected);
+    } else if (selected === false) {
+      setInfoCurrencys(infoCurrencys.filter((item) => item.favorite === true));
+      setSelected(!selected);
+    }
   };
+
   return (
     <Grid
       item
@@ -50,19 +64,19 @@ const Inputslive = ({
         <InputSearch handlesearch={handlesearch} />
       </Grid>
       <Grid display={"flex"} gap={3}>
-        <Button
-          onClick={() => handlestateFavoreie(infoCurrencys)}
+        <ToggleButton
+          onChange={() => handlestateFavoreie(infoCurrencys)}
+          selected={selected}
           variant="outlined"
-          startIcon={<StarOutlineRoundedIcon />}
           sx={{
             width: "150px",
             height: 56,
-            color: "#c6c6c6",
+            color: "black",
             borderColor: "#c6c6c6",
           }}
         >
           <Grid pr={2}>نشان شده ها</Grid>
-        </Button>
+        </ToggleButton>
         <TextField
           sx={{
             width: "150px",
@@ -74,10 +88,9 @@ const Inputslive = ({
           onChange={handleChange}
           SelectProps={{ native: true }}
           variant="outlined"
+          placeholder="ترتیب بر اساس"
         >
-          <option>
-            <Button>بیشترین قیمت</Button>
-          </option>
+          <option>بیشترین قیمت</option>
           <option>کمترین قیمت</option>
         </TextField>
       </Grid>
