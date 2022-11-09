@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 
 import OneCurrency from "./OneCurrency";
-const TableCurrencylive = ({ infoCurrencys, unit }) => {
+const TableCurrencylive = ({ infoCurrencys, unit, setInfoCurrencys }) => {
   return (
     <Grid
       display={"flex"}
@@ -12,7 +12,13 @@ const TableCurrencylive = ({ infoCurrencys, unit }) => {
       gap={3}
     >
       {infoCurrencys.map((infoCurrency, index) => (
-        <OneCurrency index={index} infoCurrency={infoCurrency} unit={unit} />
+        <OneCurrency
+          index={index}
+          infoCurrency={infoCurrency}
+          unit={unit}
+          infoCurrencys={infoCurrencys}
+          setInfoCurrencys={setInfoCurrencys}
+        />
       ))}
     </Grid>
   );

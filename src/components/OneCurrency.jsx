@@ -3,7 +3,22 @@ import { Grid, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
-const OneCurrency = ({ infoCurrency, index, unit, favorite }) => {
+const OneCurrency = ({
+  infoCurrency,
+  index,
+  unit,
+  infoCurrencys,
+  setInfoCurrencys,
+}) => {
+  const handlefavorite = (symbol) => {
+    setInfoCurrencys(
+      infoCurrencys.map((infoCurrency) =>
+        infoCurrency.symbol === symbol
+          ? { ...infoCurrency, favorite: !infoCurrency.favorite }
+          : infoCurrency
+      )
+    );
+  };
   return (
     <Grid
       key={index}
@@ -13,12 +28,13 @@ const OneCurrency = ({ infoCurrency, index, unit, favorite }) => {
       container
       width={"100%"}
     >
-      <Grid item>
-        <Button onClick={""}>
-          {favorite}
-          <StarBorderIcon />
-        </Button>
-      </Grid>
+      <Button item onClick={() => handlefavorite(infoCurrency.symbol)}>
+        {infoCurrency.favorite ? (
+          <StarBorderIcon sx={{ color: "red" }} />
+        ) : (
+          <StarBorderIcon sx={{ color: "blue" }} />
+        )}
+      </Button>
       <Grid item display={"flex"} width={90} justifyContent={"flex-end"}>
         <Typography>{infoCurrency.priceChangePercent}</Typography>
       </Grid>

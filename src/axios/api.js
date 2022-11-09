@@ -1,11 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "https://binance43.p.rapidapi.com",
-    headers: {
-        'X-RapidAPI-Key': '539e4bb6cfmsh6fcf58c502241cdp175c4ejsnedbbc1df4226',
-        'X-RapidAPI-Host': 'binance43.p.rapidapi.com'
-    }
+    baseURL: "https://deeff1f9-fa7d-49c9-870e-e99b2305debc.mock.pstmn.io",
+
 });
 
 export const handelget24hr = () => {
@@ -13,6 +10,6 @@ export const handelget24hr = () => {
 }
 
 export const handelgetdataprice = () => {
-    return api(`/ticker/price`).then(data => data.data)
+    return api(`/ticker/pricev`).then(data => data.data)
 }
 

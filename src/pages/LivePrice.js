@@ -45,7 +45,7 @@ const LivePrice = () => {
                         <TableHeader />
                     </Grid>
                     <Grid>
-                        <TableCurrencylive infoCurrencys={infoCurrencys} favorite={favorite} setfavorit={setfavorit} unit={unit} />
+                        <TableCurrencylive infoCurrencys={infoCurrencys} favorite={favorite} setfavorit={setfavorit} unit={unit} setInfoCurrencys={setInfoCurrencys} />
                     </Grid>
                 </Grid>
             </Grid>

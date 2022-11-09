@@ -33,7 +33,9 @@ const Inputslive = ({
     setInfoCurrencys(infoCurrencys);
     setUnit("تومان");
   };
-
+  const handlestateFavoreie = (infoCurrencys) => {
+    setInfoCurrencys(infoCurrencys.filter((item) => item.favorite === true));
+  };
   return (
     <Grid
       item
@@ -49,6 +51,7 @@ const Inputslive = ({
       </Grid>
       <Grid display={"flex"} gap={3}>
         <Button
+          onClick={() => handlestateFavoreie(infoCurrencys)}
           variant="outlined"
           startIcon={<StarOutlineRoundedIcon />}
           sx={{

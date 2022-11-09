@@ -29,7 +29,6 @@ export default function PriceModal({ handlechange, form, setForm }) {
 
   const handleOpen = () => {
     setOpen(true);
-    handelgetdata();
   };
   const handleClose = () => {
     setOpen(false);
