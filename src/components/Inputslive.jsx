@@ -8,9 +8,10 @@ const Inputslive = ({
   setInfoCurrencys,
   infoCurrencys,
   setUnit,
+  setSelected,
+  selected,
 }) => {
   const [select, setSelect] = useState("ترتیب بر اساس");
-  const [selected, setSelected] = useState(false);
 
   const handleChange = (event) => {
     setSelect(event.target.value);
@@ -22,9 +23,13 @@ const Inputslive = ({
       handlesorlow();
     }
   };
-  const handlesortmore = (infoCurrencys) => {};
+  const handlesortmore = () => {
+    console.log(infoCurrencys);
+    const t = infoCurrencys.sort((a, b) => a.askPrice - b.askPrice);
+    setInfoCurrencys(t);
+  };
 
-  const handlesorlow = (infoCurrencys) => {};
+  const handlesorlow = () => {};
   const handleTeter = () => {
     setInfoCurrencys(
       infoCurrencys.map((infoCurrency) => ({
@@ -32,6 +37,7 @@ const Inputslive = ({
         askPrice: infoCurrency.askPrice * 2,
         symbol: infoCurrency.symbol,
         priceChangePercent: infoCurrency.priceChangePercent,
+        favorite: infoCurrency.favorite,
       }))
     );
     setUnit("تتر");
@@ -40,14 +46,8 @@ const Inputslive = ({
     setInfoCurrencys(infoCurrencys);
     setUnit("تومان");
   };
-  const handlestateFavoreie = (infoCurrencys) => {
-    if (selected === true) {
-      setInfoCurrencys(infoCurrencys);
-      setSelected(!selected);
-    } else if (selected === false) {
-      setInfoCurrencys(infoCurrencys.filter((item) => item.favorite === true));
-      setSelected(!selected);
-    }
+  const handlestateFavoreie = () => {
+    setSelected(!selected);
   };
 
   return (

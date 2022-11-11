@@ -10,6 +10,7 @@ import TableCurrencylive from './../components/TableCurrencylive';
 
 
 const LivePrice = () => {
+    const [selected, setSelected] = useState(false);
     const [infoCurrencys, setInfoCurrencys] = useState([])
     const [favorite, setfavorit] = useState(false)
     const [unit, setUnit] = useState("تومان")
@@ -18,7 +19,7 @@ const LivePrice = () => {
         setInfoCurrencys(data)
     };
     const handlesearch = (e) => {
-        debugger;
+
         const { value } = e.target;
         const data = infoCurrencys.filter((item) =>
             item.symbol.toUpperCase().includes(value.toUpperCase())
@@ -39,13 +40,13 @@ const LivePrice = () => {
                         <Typography> {infoCurrencys.length} ارز دیجیتال</Typography>
                     </Grid>
                     <Grid container item width={"100%"}>
-                        <Inputslive handlesearch={handlesearch} infoCurrencys={infoCurrencys} setInfoCurrencys={setInfoCurrencys} setUnit={setUnit} />
+                        <Inputslive handlesearch={handlesearch} infoCurrencys={infoCurrencys} setInfoCurrencys={setInfoCurrencys} setUnit={setUnit} selected={selected} setSelected={setSelected} />
                     </Grid>
                     <Grid sx={{ bgcolor: 'rgb(242,242,242)', padding: 2 }} borderRadius={3} mt={6}>
                         <TableHeader />
                     </Grid>
                     <Grid>
-                        <TableCurrencylive infoCurrencys={infoCurrencys} favorite={favorite} setfavorit={setfavorit} unit={unit} setInfoCurrencys={setInfoCurrencys} />
+                        <TableCurrencylive infoCurrencys={infoCurrencys} favorite={favorite} setfavorit={setfavorit} unit={unit} setInfoCurrencys={setInfoCurrencys} selected={selected} />
                     </Grid>
                 </Grid>
             </Grid>
