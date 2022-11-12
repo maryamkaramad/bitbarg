@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Grid, TextField } from "@mui/material";
-import { ReactComponent as LogoIcon } from "../assets/img/header-logo.18e678a4.svg";
+import { ReactComponent as LogoIcon } from "../../assets/img/header-logo.18e678a4.svg";
 import CloseIcon from "@mui/icons-material/Close";
 const style = {
   position: "absolute",
@@ -26,7 +26,7 @@ export default function KeepMountedModal() {
   return (
     <Grid>
       <Button variant="mainButton" onClick={handleOpen}>
-        ورود / ثبت نام{" "}
+        ورود / ثبت نام
       </Button>
       <Modal
         keepMounted

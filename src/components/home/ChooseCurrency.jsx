@@ -8,8 +8,8 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import { useState, useEffect } from "react";
 import DoneIcon from "@mui/icons-material/Done";
-import InputSearch from "./InputSearch";
-import { handelgetdataprice } from "../axios/api";
+import InputSearch from "../../common/InputSearch";
+import { handelgetdataprice } from "../../axios/api";
 
 const style = {
   position: "absolute",
@@ -26,11 +26,13 @@ const style = {
 export default function PriceModal({ handlechange, form, setForm }) {
   const [open, setOpen] = React.useState(false);
   const [currencys, setCurencys] = useState([]);
-
+  const [search, setSearch] = useState("");
   const handleOpen = () => {
     setOpen(true);
+    setSearch("");
   };
   const handleClose = () => {
+    setSearch("");
     setOpen(false);
   };
 
@@ -41,16 +43,11 @@ export default function PriceModal({ handlechange, form, setForm }) {
   useEffect(() => {
     handelgetdata();
   }, []);
-  const handlesearch = (e) => {
-    const { value } = e.target;
-    const data = currencys.filter((item) =>
-      item.symbol.toUpperCase().includes(value.toUpperCase())
-    );
-    setCurencys(data);
-  };
+
   const handlesetinput = (currency) => {
     setForm(currency);
     setOpen(false);
+    setSearch("");
   };
 
   return (
@@ -80,45 +77,49 @@ export default function PriceModal({ handlechange, form, setForm }) {
           </Grid>
 
           <Grid item container justifyContent={"center"} mb={2}>
-            <InputSearch handlesearch={handlesearch} />
+            <InputSearch search={search} setSearch={setSearch} />
           </Grid>
 
           <Grid item maxHeight={"350px"} sx={{ overflowY: "scroll" }}>
-            {currencys.map((currency) => (
-              <Grid continer padding={2} width={"100%"}>
-                <Button
-                  item
-                  onClick={() => handlesetinput(currency)}
-                  sx={{ width: "100%", color: "black" }}
-                >
-                  <Grid
-                    continer
-                    display={"flex"}
-                    padding={2}
-                    justifyContent={"space-between"}
-                    width={"100%"}
-                    alignItems={"center"}
+            {currencys
+              .filter((m) =>
+                m.symbol.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((currency) => (
+                <Grid continer padding={2} width={"100%"}>
+                  <Button
+                    item
+                    onClick={() => handlesetinput(currency)}
+                    sx={{ width: "100%", color: "black" }}
                   >
-                    <Grid item>
-                      <Typography> نماد</Typography>
-                      <Typography>{currency.symbol}</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography>قیمت خرید </Typography>
-                      <Typography>{currency.price * 36000} تومان</Typography>
-                    </Grid>
-                    <IconButton
-                      aria-label="done"
-                      size="small"
-                      sx={{ color: "white", bgcolor: "primary.light" }}
-                      variant="mainButton"
+                    <Grid
+                      continer
+                      display={"flex"}
+                      padding={2}
+                      justifyContent={"space-between"}
+                      width={"100%"}
+                      alignItems={"center"}
                     >
-                      <DoneIcon item fontSize="small" />
-                    </IconButton>
-                  </Grid>
-                </Button>
-              </Grid>
-            ))}
+                      <Grid item>
+                        <Typography> نماد</Typography>
+                        <Typography>{currency.symbol}</Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography>قیمت خرید </Typography>
+                        <Typography>{currency.price * 36000} تومان</Typography>
+                      </Grid>
+                      <IconButton
+                        aria-label="done"
+                        size="small"
+                        sx={{ color: "white", bgcolor: "primary.light" }}
+                        variant="mainButton"
+                      >
+                        <DoneIcon item fontSize="small" />
+                      </IconButton>
+                    </Grid>
+                  </Button>
+                </Grid>
+              ))}
           </Grid>
         </Box>
       </Modal>

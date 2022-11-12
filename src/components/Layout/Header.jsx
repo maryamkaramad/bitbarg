@@ -3,7 +3,7 @@ import React from "react";
 import Continer from "./../Continer/Continer";
 import { Link } from "react-router-dom";
 import { ReactComponent as LogoIcon } from "../../assets/img/header-logo.18e678a4.svg";
-import KeepMountedModal from "../Button";
+import KeepMountedModal from "./Button";
 const Header = () => {
   const menuItem = [
     {

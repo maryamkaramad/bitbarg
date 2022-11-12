@@ -2,7 +2,7 @@ import React from "react";
 import { FormControl, Grid } from "@mui/material";
 import { TextField } from "@mui/material";
 
-const InputSearch = ({ handlesearch }) => {
+const InputSearch = ({ setSearch, search }) => {
   return (
     <Grid item container>
       <FormControl item fullWidth type={"submit"}>
@@ -11,8 +11,8 @@ const InputSearch = ({ handlesearch }) => {
           item
           type={"search"}
           placeholder={"جست و جو "}
-          onChange={handlesearch}
-          name="search"
+          onChange={(event) => setSearch(event.target.value)}
+          name={search}
         />
       </FormControl>
     </Grid>

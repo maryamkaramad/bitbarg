@@ -4,7 +4,7 @@ import Continer from "./../components/Continer/Continer";
 import bitbarg from "../assets/img/bitbarg.png";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
-import Form from "../components/Form";
+import Form from "../components/home/Form";
 
 const Home = () => {
   return (

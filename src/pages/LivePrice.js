@@ -4,12 +4,13 @@ import { Grid, Typography } from '@mui/material';
 import { handelget24hr } from '../axios/api';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Inputslive from './../components/Inputslive';
-import TableHeader from './../components/TableHeader';
-import TableCurrencylive from './../components/TableCurrencylive';
+import Inputslive from '../components/pricelive/Inputslive';
+import TableHeader from '../components/pricelive//TableHeader';
+import TableCurrencylive from '../components/pricelive/TableCurrencylive';
 
 
 const LivePrice = () => {
+    const [search, setSearch] = useState("");
     const [selected, setSelected] = useState(false);
     const [infoCurrencys, setInfoCurrencys] = useState([])
     const [favorite, setfavorit] = useState(false)
@@ -18,15 +19,7 @@ const LivePrice = () => {
         const data = await handelget24hr()
         setInfoCurrencys(data)
     };
-    const handlesearch = (e) => {
 
-        const { value } = e.target;
-        const data = infoCurrencys.filter((item) =>
-            item.symbol.toUpperCase().includes(value.toUpperCase())
-
-        );
-        setInfoCurrencys(data);
-    };
 
     useEffect(() => {
         handelget24();
@@ -40,13 +33,13 @@ const LivePrice = () => {
                         <Typography> {infoCurrencys.length} ارز دیجیتال</Typography>
                     </Grid>
                     <Grid container item width={"100%"}>
-                        <Inputslive handlesearch={handlesearch} infoCurrencys={infoCurrencys} setInfoCurrencys={setInfoCurrencys} setUnit={setUnit} selected={selected} setSelected={setSelected} />
+                        <Inputslive infoCurrencys={infoCurrencys} setInfoCurrencys={setInfoCurrencys} setUnit={setUnit} selected={selected} setSelected={setSelected} search={search} setSearch={setSearch} />
                     </Grid>
                     <Grid sx={{ bgcolor: 'rgb(242,242,242)', padding: 2 }} borderRadius={3} mt={6}>
                         <TableHeader />
                     </Grid>
                     <Grid>
-                        <TableCurrencylive infoCurrencys={infoCurrencys} favorite={favorite} setfavorit={setfavorit} unit={unit} setInfoCurrencys={setInfoCurrencys} selected={selected} />
+                        <TableCurrencylive infoCurrencys={infoCurrencys} favorite={favorite} setfavorit={setfavorit} unit={unit} setInfoCurrencys={setInfoCurrencys} selected={selected} search={search} />
                     </Grid>
                 </Grid>
             </Grid>

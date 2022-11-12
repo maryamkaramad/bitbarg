@@ -6,8 +6,8 @@ const TableCurrencylive = ({
   infoCurrencys,
   unit,
   setInfoCurrencys,
-  setSelected,
   selected,
+  search,
 }) => {
   return (
     <Grid
@@ -18,7 +18,10 @@ const TableCurrencylive = ({
       gap={3}
     >
       {infoCurrencys
-        .filter((m) => m.favorite === true || !selected)
+        .filter((infoCurrency) => infoCurrency.favorite === true || !selected)
+        .filter((infoCurrency) =>
+          infoCurrency.symbol.toLowerCase().includes(search.toLowerCase())
+        )
         .map((infoCurrency, index) => (
           <OneCurrency
             index={index}

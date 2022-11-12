@@ -1,35 +1,37 @@
 import React, { useState } from "react";
 import { Grid, Button, TextField, ToggleButton } from "@mui/material";
 
-import InputSearch from "./InputSearch";
+import InputSearch from "../../common/InputSearch";
+import { useMemo } from "react";
 
 const Inputslive = ({
-  handlesearch,
   setInfoCurrencys,
   infoCurrencys,
   setUnit,
   setSelected,
   selected,
+  setSearch,
+  search,
 }) => {
   const [select, setSelect] = useState("ترتیب بر اساس");
 
   const handleChange = (event) => {
     setSelect(event.target.value);
 
-    if (event.target.value === "بیشترین قیمت") {
+    if (selected === "بیشترین قیمت") {
       handlesortmore();
     }
-    if (event.target.value === "کمترین قیمت") {
+    if (selected === "کمترین قیمت") {
       handlesorlow();
     }
   };
-  const handlesortmore = () => {
-    console.log(infoCurrencys);
-    const t = infoCurrencys.sort((a, b) => a.askPrice - b.askPrice);
-    setInfoCurrencys(t);
-  };
+  const handlesortmore = useMemo(() => {
+    return infoCurrencys?.sort((a, b) => a.askPrice - b.askPrice);
+  }, [infoCurrencys]);
 
-  const handlesorlow = () => {};
+  const handlesorlow = useMemo(() => {
+    return infoCurrencys?.sort((a, b) => b.askPrice - a.askPrice);
+  }, [infoCurrencys]);
   const handleTeter = () => {
     setInfoCurrencys(
       infoCurrencys.map((infoCurrency) => ({
@@ -61,7 +63,7 @@ const Inputslive = ({
       justifyContent={"space-between"}
     >
       <Grid>
-        <InputSearch handlesearch={handlesearch} />
+        <InputSearch setSearch={setSearch} search={search} />
       </Grid>
       <Grid display={"flex"} gap={3}>
         <ToggleButton
@@ -90,8 +92,8 @@ const Inputslive = ({
           variant="outlined"
           placeholder="ترتیب بر اساس"
         >
-          <option>بیشترین قیمت</option>
-          <option>کمترین قیمت</option>
+          <option value={1}>بیشترین قیمت</option>
+          <option value={2}>کمترین قیمت</option>
         </TextField>
       </Grid>
       <Grid
