@@ -3,13 +3,13 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Grid, IconButton, TextField } from "@mui/material";
+import { Avatar, Grid, IconButton, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { useState, useEffect } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import InputSearch from "../../common/InputSearch";
-import { handelgetdataprice } from "../../axios/api";
+import { handelget24hr } from "../../axios/api";
 
 const style = {
   position: "absolute",
@@ -29,15 +29,14 @@ export default function PriceModal({ handlechange, form, setForm }) {
   const [search, setSearch] = useState("");
   const handleOpen = () => {
     setOpen(true);
-    setSearch("");
+    clearinput();
   };
   const handleClose = () => {
-    setSearch("");
     setOpen(false);
   };
 
   const handelgetdata = async () => {
-    const data = await handelgetdataprice();
+    const data = await handelget24hr();
     setCurencys(data);
   };
   useEffect(() => {
@@ -47,9 +46,10 @@ export default function PriceModal({ handlechange, form, setForm }) {
   const handlesetinput = (currency) => {
     setForm(currency);
     setOpen(false);
+  };
+  const clearinput = () => {
     setSearch("");
   };
-
   return (
     <Grid item>
       <TextField
@@ -86,7 +86,7 @@ export default function PriceModal({ handlechange, form, setForm }) {
                 m.symbol.toLowerCase().includes(search.toLowerCase())
               )
               .map((currency) => (
-                <Grid continer padding={2} width={"100%"}>
+                <Grid continer padding={2} width={"100%"} key={currency.uuid}>
                   <Button
                     item
                     onClick={() => handlesetinput(currency)}
@@ -101,8 +101,11 @@ export default function PriceModal({ handlechange, form, setForm }) {
                       alignItems={"center"}
                     >
                       <Grid item>
-                        <Typography> نماد</Typography>
+                        <Avatar src={currency.iconUrl} />
+                      </Grid>
+                      <Grid>
                         <Typography>{currency.symbol}</Typography>
+                        <Typography>{currency.name}</Typography>
                       </Grid>
                       <Grid item>
                         <Typography>قیمت خرید </Typography>

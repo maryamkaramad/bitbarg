@@ -13,6 +13,7 @@ const InputSearch = ({ setSearch, search }) => {
           placeholder={"جست و جو "}
           onChange={(event) => setSearch(event.target.value)}
           name={search}
+          value={search}
         />
       </FormControl>
     </Grid>
