@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Avatar } from "@mui/material";
 import { Button } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
@@ -22,34 +22,45 @@ const OneCurrency = ({
   return (
     <Grid
       key={index}
-      display={"flex"}
-      justifyContent={"space-between"}
-      alignItems={"end"}
+      sx={10}
       container
-      width={"100%"}
+      item
+      justifyContent={"space-between"}
+      alignItems={"center"}
+      my={3}
     >
-      <Button item onClick={() => handlefavorite(infoCurrency.symbol)}>
-        {infoCurrency.favorite ? (
-          <StarBorderIcon sx={{ color: "red" }} />
-        ) : (
-          <StarBorderIcon sx={{ color: "blue" }} />
-        )}
-      </Button>
-      <Grid item display={"flex"} width={90} justifyContent={"flex-end"}>
-        <Typography>{infoCurrency.priceChangePercent}</Typography>
+      <Grid item sx={1}>
+        <Button item onClick={() => handlefavorite(infoCurrency.symbol)}>
+          {infoCurrency.favorite ? (
+            <StarBorderIcon sx={{ color: "red" }} />
+          ) : (
+            <StarBorderIcon sx={{ color: "blue" }} />
+          )}
+        </Button>
       </Grid>
-      <Grid item>
-        <Typography display={"flex"} width={200} justifyContent={"flex-end"}>
-          {infoCurrency.bidPrice} {unit}
+
+      <Grid item sx={1}>
+        <Typography>{infoCurrency.change}</Typography>
+      </Grid>
+      <Grid item sx={1}>
+        <Typography>
+          {infoCurrency.sparkline[0]}
+          {unit}
         </Typography>
       </Grid>
-      <Grid item>
-        <Typography display={"flex"} width={200} justifyContent={"flex-end"}>
-          {infoCurrency.askPrice} {unit}
+      <Grid item sx={1}>
+        <Typography>
+          {infoCurrency.price}
+          {unit}
         </Typography>
       </Grid>
-      <Grid item>
+
+      <Grid item sx={1} dis>
+        <Typography> {infoCurrency.name}</Typography>
         <Typography> {infoCurrency.symbol}</Typography>
+      </Grid>
+      <Grid item sx={1}>
+        <Avatar src={infoCurrency.iconUrl} />
       </Grid>
     </Grid>
   );

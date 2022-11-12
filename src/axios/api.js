@@ -12,7 +12,5 @@ export const handelget24hr = () => {
     return api(`/coins`).then(data => data.data.data.coins)
 }
 
-// export const handelgetdataprice = () => {
-//     return api(`/ticker/pricev`).then(data => data.data)
-// }
+
 

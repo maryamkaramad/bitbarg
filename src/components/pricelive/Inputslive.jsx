@@ -34,12 +34,13 @@ const Inputslive = ({
   }, [infoCurrencys]);
   const handleTeter = () => {
     setInfoCurrencys(
-      infoCurrencys.map((infoCurrency) => ({
-        bidPrice: infoCurrency.bidPrice * 2,
-        askPrice: infoCurrency.askPrice * 2,
+      infoCurrencys?.map((infoCurrency) => ({
+        price: infoCurrency.price,
         symbol: infoCurrency.symbol,
+        name: infoCurrency.name,
         priceChangePercent: infoCurrency.priceChangePercent,
         favorite: infoCurrency.favorite,
+        iconUrl: infoCurrency.iconUrl,
       }))
     );
     setUnit("تتر");
@@ -53,19 +54,11 @@ const Inputslive = ({
   };
 
   return (
-    <Grid
-      item
-      display={"flex"}
-      container
-      flexDirection={"row"}
-      width={"100%"}
-      gap={1}
-      justifyContent={"space-between"}
-    >
-      <Grid>
+    <Grid item container xs={12} justifyContent={"space-around"}>
+      <Grid item xs={4} mx={"2px"}>
         <InputSearch setSearch={setSearch} search={search} />
       </Grid>
-      <Grid display={"flex"} gap={3}>
+      <Grid item xs={3} container justifyContent={"center"} gap={1}>
         <ToggleButton
           onChange={() => handlestateFavoreie(infoCurrencys)}
           selected={selected}
@@ -77,7 +70,7 @@ const Inputslive = ({
             borderColor: "#c6c6c6",
           }}
         >
-          <Grid pr={2}>نشان شده ها</Grid>
+          <Grid item>نشان شده ها</Grid>
         </ToggleButton>
         <TextField
           sx={{
@@ -96,33 +89,36 @@ const Inputslive = ({
           <option value={2}>کمترین قیمت</option>
         </TextField>
       </Grid>
-      <Grid
-        border={1}
-        borderRadius={2}
-        display={"flex"}
-        alignItems={"center"}
-        gap={"5px"}
-        sx={{ borderColor: "#c6c6c6" }}
-        p={1}
-      >
-        <Button
-          onClick={hadleback}
-          variant="secondaryButton"
-          sx={{
-            borderColor: "#c6c6c6",
-          }}
+      <Grid item xs={4} container justifyContent={"center"}>
+        <Grid
+          item
+          border={1}
+          borderRadius={2}
+          display={"flex"}
+          alignItems={"center"}
+          gap={"5px"}
+          sx={{ borderColor: "#c6c6c6" }}
+          p={1}
         >
-          تومان
-        </Button>
-        <Button
-          onClick={handleTeter}
-          variant="secondaryButton"
-          sx={{
-            borderColor: "#c6c6c6",
-          }}
-        >
-          تتر
-        </Button>
+          <Button
+            onClick={hadleback}
+            variant="secondaryButton"
+            sx={{
+              borderColor: "#c6c6c6",
+            }}
+          >
+            تومان
+          </Button>
+          <Button
+            onClick={handleTeter}
+            variant="secondaryButton"
+            sx={{
+              borderColor: "#c6c6c6",
+            }}
+          >
+            تتر
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
