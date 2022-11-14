@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Grid, Button, TextField, ToggleButton } from "@mui/material";
+import React from "react";
+import { Grid, Button, ToggleButton } from "@mui/material";
 
 import InputSearch from "../../common/InputSearch";
-import { useMemo } from "react";
+
+import { useCallback } from "react";
 
 const Inputslive = ({
   setInfoCurrencys,
@@ -12,59 +13,57 @@ const Inputslive = ({
   selected,
   setSearch,
   search,
+  handlesortmor,
+  handlesortles,
 }) => {
-  const [select, setSelect] = useState("ترتیب بر اساس");
-
-  const handleChange = (event) => {
-    setSelect(event.target.value);
-
-    if (selected === "بیشترین قیمت") {
-      handlesortmore();
-    }
-    if (selected === "کمترین قیمت") {
-      handlesorlow();
-    }
-  };
-  const handlesortmore = useMemo(() => {
-    return infoCurrencys?.sort((a, b) => a.askPrice - b.askPrice);
-  }, [infoCurrencys]);
-
-  const handlesorlow = useMemo(() => {
-    return infoCurrencys?.sort((a, b) => b.askPrice - a.askPrice);
-  }, [infoCurrencys]);
-  const handleTeter = () => {
-    setInfoCurrencys(
-      infoCurrencys?.map((infoCurrency) => ({
-        price: infoCurrency.price,
-        symbol: infoCurrency.symbol,
-        name: infoCurrency.name,
-        priceChangePercent: infoCurrency.priceChangePercent,
-        favorite: infoCurrency.favorite,
-        iconUrl: infoCurrency.iconUrl,
-      }))
-    );
+  const handleTeter = useCallback(() => {
+    const data = infoCurrencys?.map((infoCurrency) => ({
+      ...infoCurrency,
+      price: infoCurrency.price,
+    }));
+    setInfoCurrencys(data);
     setUnit("تتر");
-  };
-  const hadleback = () => {
-    setInfoCurrencys(infoCurrencys);
+  }, [infoCurrencys, setUnit]);
+
+  const hadleback = useCallback(() => {
+    const data = infoCurrencys?.map((infoCurrency) => ({
+      ...infoCurrency,
+      price: infoCurrency.price,
+    }));
+    setInfoCurrencys(data);
     setUnit("تومان");
-  };
+  }, [infoCurrencys, setUnit]);
   const handlestateFavoreie = () => {
     setSelected(!selected);
   };
 
   return (
-    <Grid item container xs={12} justifyContent={"space-around"}>
-      <Grid item xs={4} mx={"2px"}>
+    <Grid
+      item
+      container
+      xs={12}
+      md={12}
+      lg={12}
+      justifyContent={"space-around"}
+    >
+      <Grid item xs={12} md={12} mx={"2px"} lg={3}>
         <InputSearch setSearch={setSearch} search={search} />
       </Grid>
-      <Grid item xs={3} container justifyContent={"center"} gap={1}>
+      <Grid
+        item
+        xs={12}
+        md={12}
+        lg={3}
+        container
+        justifyContent={"center"}
+        gap={1}
+      >
         <ToggleButton
           onChange={() => handlestateFavoreie(infoCurrencys)}
           selected={selected}
           variant="outlined"
           sx={{
-            width: "150px",
+            width: 100,
             height: 56,
             color: "black",
             borderColor: "#c6c6c6",
@@ -72,24 +71,33 @@ const Inputslive = ({
         >
           <Grid item>نشان شده ها</Grid>
         </ToggleButton>
-        <TextField
-          sx={{
-            width: "150px",
-            color: "#c6c6c6",
-            bgcolor: "white",
-          }}
-          select
-          value={select}
-          onChange={handleChange}
-          SelectProps={{ native: true }}
+
+        <Button
           variant="outlined"
-          placeholder="ترتیب بر اساس"
+          onClick={handlesortles}
+          sx={{
+            width: 100,
+            height: 56,
+            color: "black",
+            borderColor: "#c6c6c6",
+          }}
         >
-          <option value={1}>بیشترین قیمت</option>
-          <option value={2}>کمترین قیمت</option>
-        </TextField>
+          کمترین قیمت
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={handlesortmor}
+          sx={{
+            width: 100,
+            height: 56,
+            color: "black",
+            borderColor: "#c6c6c6",
+          }}
+        >
+          بیشترین قیمت
+        </Button>
       </Grid>
-      <Grid item xs={4} container justifyContent={"center"}>
+      <Grid item xs={12} md={12} lg={3} container justifyContent={"center"}>
         <Grid
           item
           border={1}

@@ -14,17 +14,16 @@ const TableHeader = () => {
       item
       container
       borderColor={"#fafafa"}
-      xs={12}
       alignItems={"center"}
       justifyContent={"flex-start"}
       my={10}
-      sx={{ bgcolor: "#fafafa" }}
+      sx={{ bgcolor: "#fafafa", display: { xs: "none", xl: "flex" } }}
       borderRadius={2}
       p={2}
-      gap={"200px"}
+      columnGap={38}
     >
       {names.map((name) => (
-        <Grid item sx={2} key={name.id} width={"67px"}>
+        <Grid item key={name.id}>
           <Typography> {name.name}</Typography>
         </Grid>
       ))}

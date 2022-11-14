@@ -19,17 +19,18 @@ const OneCurrency = ({
       )
     );
   };
+
   return (
     <Grid
       key={index}
-      sx={10}
+      sx={12}
       container
       item
       justifyContent={"space-between"}
       alignItems={"center"}
       my={3}
     >
-      <Grid item sx={1}>
+      <Grid item sx={12}>
         <Button item onClick={() => handlefavorite(infoCurrency.symbol)}>
           {infoCurrency.favorite ? (
             <StarBorderIcon sx={{ color: "red" }} />
@@ -39,27 +40,26 @@ const OneCurrency = ({
         </Button>
       </Grid>
 
-      <Grid item sx={1}>
+      <Grid item sx={12}>
         <Typography>{infoCurrency.change}</Typography>
       </Grid>
-      <Grid item sx={1}>
-        <Typography>
-          {infoCurrency.sparkline[0]}
+      <Grid item sx={12} textAlign={"left"} width={100}>
+        <Typography textAlign={"left"}>
+          {infoCurrency.price}
           {unit}
         </Typography>
       </Grid>
-      <Grid item sx={1}>
-        <Typography>
+      <Grid item sx={12} width={100} textAlign={"left"}>
+        <Typography textAlign={"left"}>
           {infoCurrency.price}
           {unit}
         </Typography>
       </Grid>
 
-      <Grid item sx={1} dis>
-        <Typography> {infoCurrency.name}</Typography>
+      <Grid item sx={12}>
         <Typography> {infoCurrency.symbol}</Typography>
       </Grid>
-      <Grid item sx={1}>
+      <Grid item sx={12}>
         <Avatar src={infoCurrency.iconUrl} />
       </Grid>
     </Grid>
