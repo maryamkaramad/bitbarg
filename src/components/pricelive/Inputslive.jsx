@@ -57,6 +57,7 @@ const Inputslive = ({
         container
         justifyContent={"center"}
         gap={1}
+        sx={{ my: { xs: 2, lg: 0 } }}
       >
         <ToggleButton
           onChange={() => handlestateFavoreie(infoCurrencys)}

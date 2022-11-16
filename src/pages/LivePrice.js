@@ -16,24 +16,34 @@ const LivePrice = () => {
     const [infoCurrencys, setInfoCurrencys] = useState([])
     const [favorite, setfavorit] = useState(false)
     const [unit, setUnit] = useState("تومان")
+    const [value, setValue] = useState(1)
     const handlesortmor = () => {
-        const t = infoCurrencys?.sort((a, b) => a.price - b.price);
-        setInfoCurrencys(t);
+        const t = infoCurrencys?.sort((a, b) => b.price - a.price);
+        setValue(2)
+        return t
     }
 
     const handlesortles = () => {
         const t = infoCurrencys?.sort((a, b) => a.price - b.price);
-        setInfoCurrencys(t);
+        setValue(3)
+        return t
     }
     const handelget24 = async () => {
         const data = await handelget24hr()
-        setInfoCurrencys(data)
+        if (value === 1) {
+            setInfoCurrencys(data)
+        }
+        else if (value === 2) {
+            setInfoCurrencys(handlesortmor)
+        }
+        else if (value === 3) {
+            setInfoCurrencys(handlesortles)
+        }
+
+
     };
     useEffect(() => {
         handelget24();
-        handlesortmor();
-        handlesortles();
-
     }, []);
 
 
