@@ -46,14 +46,14 @@ const Inputslive = ({
       lg={12}
       justifyContent={"space-around"}
     >
-      <Grid item xs={12} md={12} mx={"2px"} lg={3}>
+      <Grid item md={4} mx={"2px"} lg={3} sx={{maxWidth:"300px"}}>
         <InputSearch setSearch={setSearch} search={search} />
       </Grid>
       <Grid
         item
         xs={12}
         md={12}
-        lg={3}
+        lg={4}
         container
         justifyContent={"center"}
         gap={1}
@@ -107,7 +107,7 @@ const Inputslive = ({
           alignItems={"center"}
           gap={"5px"}
           sx={{ borderColor: "#c6c6c6" }}
-          p={1}
+         
         >
           <Button
             onClick={hadleback}

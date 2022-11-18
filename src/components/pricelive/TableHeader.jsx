@@ -17,7 +17,7 @@ const TableHeader = () => {
       alignItems={"center"}
       justifyContent={"flex-start"}
       my={10}
-      sx={{ bgcolor: "#fafafa", display: { xs: "none", md: "flex" }, }}
+      sx={{ bgcolor: "#fafafa", display: { xs: "none", lg: "flex" }, }}
       borderRadius={2}
       p={2}
       columnGap={35}

@@ -10,7 +10,7 @@ export const Themes = createTheme({
             styleOverrides: {
                 body: {
                     background: '#fff',
-                    fontFamily: "roboto",
+                   fontFamily: "dena"
                 },
                 'a': {
                     textDecoration: "none"
@@ -69,6 +69,7 @@ export const Themes = createTheme({
         background: '#EEE'
     },
     typography: {
+        fontFamily: "dena",
         h1: {
             fontSize: 18,
             fontWeight: 700,
