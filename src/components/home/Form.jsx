@@ -20,8 +20,10 @@ const Form = () => {
 
   return (
     <form action="">
-      <Grid container justifyContent={"center"} gap={2}>
-        <TextField
+      <Grid container justifyContent={"center"} gap={2} >
+        <Grid item container sx={{flexDirection:{xs:"column-reverse", md:"row"}}} gap={2} justifyItems={"center"} alignItem={"center"} xs={6} md={12}>
+          <Grid item md={3}>
+        <TextField 
         disabled={"disabled"}
           onChange={handlechang}
           item
@@ -29,9 +31,13 @@ const Form = () => {
           variant="outlined"
           name="price"
           value={form.price}
+
         />
+        </Grid >
+        <Grid item md={3}>
         <TextField
-          item
+      
+       
           type={"text"}
           label="واحد"
           variant="outlined"
@@ -40,7 +46,9 @@ const Form = () => {
           onChange={handlechang}
           onKeyUp={() => handleFinalprice(form)}
         />
+        </Grid>
         <PriceModal handlechang={handlechang} form={form} setForm={setForm} />
+        </Grid>
         <Grid
           item
           continer
@@ -48,6 +56,7 @@ const Form = () => {
           alignItems={"center"}
           display={"flex"}
           gap={5}
+          md={12}
         >
           <Button item variant={"secondaryButton"}>
             درخواست خرید

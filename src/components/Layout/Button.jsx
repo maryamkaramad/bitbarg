@@ -24,8 +24,8 @@ export default function KeepMountedModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <Grid>
-      <Button variant="mainButton" onClick={handleOpen}>
+    <Grid >
+      <Button variant="mainButton" onClick={handleOpen} height={40}>
         ورود / ثبت نام
       </Button>
       <Modal
