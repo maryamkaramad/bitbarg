@@ -22,6 +22,7 @@ const Form = () => {
     <form action="">
       <Grid container justifyContent={"center"} gap={2}>
         <TextField
+        disabled={"disabled"}
           onChange={handlechang}
           item
           label="تومان"

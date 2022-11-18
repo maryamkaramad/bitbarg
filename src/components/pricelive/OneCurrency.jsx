@@ -23,14 +23,15 @@ const OneCurrency = ({
   return (
     <Grid
       key={index}
-      sx={12}
+     
       container
       item
-      justifyContent={"space-between"}
-      alignItems={"center"}
       my={3}
+      gap={2}
+      p={2}
+      sx = {{ disply:"flex" ,flexDirection:{xs:"column-reverse" ,md:"row"},justifyContent:{xs:"center" ,md:"space-between"},alignItems:{xs:"center" ,md:"baseline"}}}
     >
-      <Grid item sx={12}>
+      <Grid item sx={1}>
         <Button item onClick={() => handlefavorite(infoCurrency.symbol)}>
           {infoCurrency.favorite ? (
             <StarBorderIcon sx={{ color: "red" }} />
@@ -40,27 +41,25 @@ const OneCurrency = ({
         </Button>
       </Grid>
 
-      <Grid item sx={12}>
+      <Grid item sx={1}>
         <Typography>{infoCurrency.change}</Typography>
       </Grid>
-      <Grid item sx={12} textAlign={"left"} width={100}>
+      <Grid item sx={1} textAlign={"left"} width={100}>
         <Typography textAlign={"left"}>
-          {infoCurrency.price}
-          {unit}
+        {unit ==="تومان" ? ` ${infoCurrency.price} تومان `: `${infoCurrency.price/37000} تتر`}
         </Typography>
       </Grid>
-      <Grid item sx={12} width={100} textAlign={"left"}>
+      <Grid item sx={1} width={100} textAlign={"left"}>
         <Typography textAlign={"left"}>
-          {infoCurrency.price}
-          {unit}
+        
+          {unit ==="تومان" ? ` ${infoCurrency.price} تومان `: `${infoCurrency.price/37000} تتر`}
+         
         </Typography>
       </Grid>
 
-      <Grid item sx={12}>
+      <Grid item sx={1} display={"flex"} alignItems={"baseline"} >
         <Typography> {infoCurrency.symbol}</Typography>
-      </Grid>
-      <Grid item sx={12}>
-        <Avatar src={infoCurrency.iconUrl} />
+        <Avatar width={50} src={infoCurrency.iconUrl} />
       </Grid>
     </Grid>
   );
