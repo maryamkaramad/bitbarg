@@ -7,7 +7,7 @@ const TableHeader = () => {
     { id: 2, name: "تغییرات" },
     { id: 3, name: "قیمت فروش" },
     { id: 4, name: "قیمت خرید" },
-    { id: 5, name: "ارز دیجیتال" },
+   
   ];
   return (
     <Grid
@@ -17,10 +17,10 @@ const TableHeader = () => {
       alignItems={"center"}
       justifyContent={"flex-start"}
       my={10}
-      sx={{ bgcolor: "#fafafa", display: { xs: "none", xl: "flex" } }}
+      sx={{ bgcolor: "#fafafa", display: { xs: "none", lg: "flex" }, }}
       borderRadius={2}
       p={2}
-      columnGap={38}
+      columnGap={35}
     >
       {names.map((name) => (
         <Grid item key={name.id}>

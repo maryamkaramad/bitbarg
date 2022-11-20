@@ -10,7 +10,7 @@ const TableCurrencylive = ({
   search,
 }) => {
   return (
-    <Grid item container xs={"12"}>
+    <Grid item container xs={12}>
       {infoCurrencys
         .filter((infoCurrency) => infoCurrency.favorite === true || !selected)
         .filter((infoCurrency) =>
