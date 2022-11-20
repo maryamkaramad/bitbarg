@@ -11,26 +11,25 @@ const Home = () => {
     <Continer>
       <Grid
         container
-        display={"flex"}
+        sx={12}
         justifyContent={"center"}
         alignItems={"center"}
       >
         <Grid
           item
           container
-          width={"700px"}
-          display={"flex"}
+          mt={30}
+          gap={5}
+          sx={12}
           flexDirection={"column"}
           justifyContent={"center"}
           alignItems={"center"}
-          mt={30}
-          gap={5}
         >
           <Grid item width={"272px"} height={"109px"}>
             <img src={bitbarg} alt="bitbarg" width={"100%"} height={"100%"} />
           </Grid>
           <Form />
-          <Grid item textAlign={"center"}>
+          <Grid item textAlign={"center"} justifyContent={"center"}>
             <Typography>پشتیبانی 24ساعته</Typography>
             <Typography>حتی در روزهای تعطیل</Typography>
             <Grid display={"flex"} alignItems={"center"} color={"primary.main"}>

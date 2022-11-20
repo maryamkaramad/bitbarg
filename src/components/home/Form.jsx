@@ -19,8 +19,9 @@ const Form = () => {
   };
 
   return (
-    <form action="">
-      <Grid container justifyContent={"center"} gap={2}>
+
+    <Grid container justifyContent={"center"}>
+      <Grid item p={2}>
         <TextField
           onChange={handlechang}
           item
@@ -28,6 +29,7 @@ const Form = () => {
           variant="outlined"
           name="price"
           value={form.price}
+          margin="normal"
         />
         <TextField
           item
@@ -38,25 +40,31 @@ const Form = () => {
           value={form.count}
           onChange={handlechang}
           onKeyUp={() => handleFinalprice(form)}
+          margin="normal"
         />
         <PriceModal handlechang={handlechang} form={form} setForm={setForm} />
-        <Grid
-          item
-          continer
-          justifyContent={"center"}
-          alignItems={"center"}
-          display={"flex"}
-          gap={5}
-        >
+      </Grid>
+      <Grid
+
+        continer
+        justifyContent={"center"}
+        alignItems={"center"}
+
+
+      >
+        <Grid item my={2} >
           <Button item variant={"secondaryButton"}>
             درخواست خرید
           </Button>
+        </Grid>
+        <Grid item >
           <Button item variant={"secondaryButton"}>
             فروش
           </Button>
         </Grid>
       </Grid>
-    </form>
+    </Grid>
+
   );
 };
 
