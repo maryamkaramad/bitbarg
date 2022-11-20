@@ -20,8 +20,8 @@ const Form = () => {
 
   return (
 
-    <Grid container justifyContent={"center"}>
-      <Grid item p={2}>
+    <Grid item container justifyContent={"center"} alignItems={"center"}>
+      <Grid item p={2} container sx={{ flexDirection: { xs: "column-reverse", lg: "row" } }} xs={12} justifyContent={"center"} alignItems={"center"} gap={2}>
         <TextField
           onChange={handlechang}
           item
@@ -42,17 +42,15 @@ const Form = () => {
           onKeyUp={() => handleFinalprice(form)}
           margin="normal"
         />
-        <PriceModal handlechang={handlechang} form={form} setForm={setForm} />
+        <Grid item>
+          <PriceModal handlechang={handlechang} form={form} setForm={setForm} /></Grid>
       </Grid>
       <Grid
-
+        item
         continer
-        justifyContent={"center"}
-        alignItems={"center"}
-
 
       >
-        <Grid item my={2} >
+        <Grid item my={2}  >
           <Button item variant={"secondaryButton"}>
             درخواست خرید
           </Button>

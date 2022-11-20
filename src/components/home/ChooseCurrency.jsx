@@ -51,8 +51,9 @@ export default function PriceModal({ handlechange, form, setForm }) {
     setSearch("");
   };
   return (
-    <Grid item>
+    <Grid >
       <TextField
+        fullWidth
         label=" انتخاب ارز"
         variant="outlined"
         onClick={handleOpen}
@@ -69,11 +70,16 @@ export default function PriceModal({ handlechange, form, setForm }) {
         width={"600px"}
       >
         <Box Continer sx={style}>
-          <Grid item continer display={"flex"} justifyContent={"space-between"}>
-            <Typography>انتخاب ارز</Typography>
-            <Button onClick={handleClose} sx={{ color: "black" }}>
-              <CloseIcon />
-            </Button>
+          <Grid continer xs={12} justifyContent={"space-between"} display={"flex"}>
+            <Grid item xs={6} >
+              <Typography>انتخاب ارز</Typography>
+            </Grid>
+            <Grid item xs={6} display={"flex"} justifyContent={"flex-end"}>
+              <Button onClick={handleClose} sx={{ color: "black" }}>
+                <CloseIcon />
+              </Button>
+            </Grid>
+
           </Grid>
 
           <Grid item container justifyContent={"center"} mb={2}>
